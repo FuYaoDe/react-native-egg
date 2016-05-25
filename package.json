@@ -1,0 +1,30 @@
+{
+  "name": "react-native-egg",
+  "version": "1.0.0",
+  "description": "react-native-egg make your react native app infinitely more fun !!",
+  "main": "Egg.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FuYaoDe/react-native-egg.git"
+  },
+  "keywords": [
+    "easter",
+    "egg",
+    "react-native",
+    "react-component",
+    "android",
+    "ios"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FuYaoDe/react-native-egg/issues"
+  },
+  "homepage": "https://github.com/FuYaoDe/react-native-egg#readme"
+}
