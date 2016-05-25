@@ -10,7 +10,7 @@ import {
   Alert,
   Image,
 } from 'react-native';
-import Egg from './Egg';
+import Egg from 'react-native-egg';
 const styles = StyleSheet.create({
   container: {
     flex: 1,

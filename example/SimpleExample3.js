@@ -13,7 +13,7 @@ import {
   Dimensions,
 } from 'react-native';
 const windowSize = Dimensions.get('window');
-import Egg from './Egg';
+import Egg from 'react-native-egg';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
