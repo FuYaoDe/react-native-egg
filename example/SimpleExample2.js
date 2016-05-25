@@ -50,7 +50,7 @@ export default class SimpleExample2 extends Component {
         <Text>Setp: {this.state.setp}</Text>
         <Egg style={styles.button}
           setps={'UUDD'}
-          type={'Button'}
+          touchOpacity={true}
           timeLimit={10000}
           onCatch={() => {
             this.setState({
