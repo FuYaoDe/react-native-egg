@@ -10,11 +10,12 @@ import {
   Text,
   View
 } from 'react-native';
+import Egg from './Egg';
 
 class example extends Component {
   render() {
     return (
-      <View style={styles.container}>
+      <Egg style={styles.container}>
         <Text style={styles.welcome}>
           Welcome to React Native!
         </Text>
@@ -24,7 +25,7 @@ class example extends Component {
         <Text style={styles.instructions}>
           Shake or press menu button for dev menu
         </Text>
-      </View>
+      </Egg>
     );
   }
 }

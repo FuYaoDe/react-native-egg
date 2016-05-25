@@ -10,8 +10,12 @@ import {
   Text,
   View,
   ScrollView,
+  Navigator,
+  TouchableOpacity,
+  Alert,
 } from 'react-native';
 import Egg from './Egg';
+import SimpleExample1 from './SimpleExample1';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -19,32 +23,59 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  button: {
+    margin: 20,
+    height: 50,
+    width: 150,
+    backgroundColor: '#406E9F',
+    borderRadius: 9,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  buttonText: {
+    color: '#fff',
+    fontSize: 20,
+    fontWeight: 'bold',
   },
 });
 
 class example extends Component {
+  renderScene = (route, nav) => {
+    switch (route.id) {
+      case 'simple1':
+        return <SimpleExample1 />;
+      case 'simple2':
+        return <SimpleExample1 />;
+      default:
+        return <View style={styles.container}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => nav.push({id: 'simple1', })}
+            >
+              <Text style={styles.buttonText}>Simple 1</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => nav.push({id: 'simple2', })}
+            >
+              <Text style={styles.buttonText}>Simple 2</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => nav.push({id: 'simple3', })}
+            >
+              <Text style={styles.buttonText}>Simple 3</Text>
+            </TouchableOpacity>
+        </View>;
+    }
+  }
   render() {
     return (
-      <Egg style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Shake or press menu button for dev menu
-        </Text>
-      </Egg>
+      <Navigator
+        style={{ flex: 1 }}
+        initialRoute={{}}
+        renderScene={this.renderScene}
+      />
     );
   }
 }

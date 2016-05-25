@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import {
   StyleSheet,
   View,
   PanResponder,
   Text,
+  Animated,
 } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -19,8 +20,10 @@ export default class Egg extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      reset: null,
       setp: [],
       num: -1,
+      opacity: new Animated.Value(1),
     };
   }
 
@@ -37,8 +40,34 @@ export default class Egg extends Component {
     });
   }
 
+  componentWillUnmount() {
+    if (this.state.reset) {
+      clearTimeout(this.state.reset);
+    }
+  }
+
   between = (input, min, max) => {
     return input >= min && input <= max;
+  }
+
+  opacity = () => {
+    Animated.timing(
+      this.state.opacity,
+      {
+        toValue: 0.3,
+        duration: 200,
+      },
+    ).start();
+
+    setTimeout(() => {
+      Animated.timing(
+        this.state.opacity,
+        {
+          toValue: 1,
+          duration: 200,
+        },
+      ).start();
+    }, 100);
   }
 
   gestureSetp = (gestureState) => {
@@ -65,6 +94,22 @@ export default class Egg extends Component {
     }
 
     let newSetp = [...this.state.setp];
+
+    if (this.state.num === -1) {
+      const reset = setTimeout(() => {
+        this.setState({
+          setp: [],
+          num: -1,
+        });
+      }, this.props.timeLimit);
+      this.setState({
+        reset,
+      });
+    }
+    if (this.props.type == 'Button') {
+      this.opacity();
+    }
+
     newSetp[(this.state.num + 1) % 30] = setp;
     this.setState({
       setp: newSetp,
@@ -76,9 +121,8 @@ export default class Egg extends Component {
     let setpString = newSetp.toString().replace(re, '');
 
     setpString = newSetp.length >= 30 ? setpString + setpString : setpString;
-    console.log(setp, setpString);
-    if (setpString.indexOf('UUDDLRLR') !== -1) {
-      console.log("!!!!!!!!!!!");
+    if (setpString.indexOf(this.props.setps.toUpperCase()) !== -1) {
+      this.props.onCatch();
       this.setState({
         setp: [],
         num: -1,
@@ -89,9 +133,25 @@ export default class Egg extends Component {
 
   render() {
     return (
-      <View {...this._panResponder.panHandlers} style={this.props.style}>
+      <Animated.View {...this._panResponder.panHandlers}
+        style={[this.props.style, { opacity: this.state.opacity }]}
+      >
         {this.props.children}
-      </View>
+      </Animated.View>
     );
   }
 }
+
+Egg.propTypes = {
+  setps: PropTypes.string,
+  timeLimit: PropTypes.number,
+  onCatch: PropTypes.func.isRequired,
+  type: PropTypes.string,
+};
+
+Egg.defaultProps = {
+  setps: 'UUDDLRLRTT',
+  timeLimit: 2000,
+  onCatch: null,
+  type: 'View',
+};
