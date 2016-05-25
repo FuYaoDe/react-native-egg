@@ -1,20 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import {
-  StyleSheet,
   View,
   PanResponder,
-  Text,
   Animated,
 } from 'react-native';
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'red',
-  },
-});
 
 export default class Egg extends Component {
   constructor(props) {
@@ -62,7 +51,6 @@ export default class Egg extends Component {
   }
 
   gestureSetp = (gestureState) => {
-    // console.log("onPanResponderRelease", JSON.stringify(gestureState, null, 2));
     const { dx, dy } = gestureState;
     const isXMove = !this.between(0, dx - 15, dx + 15) && Math.abs(dx) > Math.abs(dy);
     const isYMove = !this.between(0, dy - 15, dy + 15) && Math.abs(dy) > Math.abs(dx);
