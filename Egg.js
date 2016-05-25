@@ -21,7 +21,7 @@ export default class Egg extends Component {
       onStartShouldSetPanResponder: (evt, gestureState) => true,
       onStartShouldSetPanResponderCapture: (evt, gestureState) => true,
       onPanResponderGrant: (evt, gestureState) => {
-        if (this.props.type === 'Button') {
+        if (this.props.touchOpacity) {
           Animated.timing(
             this.state.opacity,
             {
@@ -85,7 +85,7 @@ export default class Egg extends Component {
         reset,
       });
     }
-    if (this.props.type === 'Button') {
+    if (this.props.touchOpacity) {
       Animated.timing(
         this.state.opacity,
         {
@@ -136,7 +136,7 @@ Egg.propTypes = {
   timeLimit: PropTypes.number,
   onCatch: PropTypes.func.isRequired,
   onAction: PropTypes.func,
-  type: PropTypes.string,
+  touchOpacity: PropTypes.bool,
 };
 
 Egg.defaultProps = {
@@ -144,5 +144,5 @@ Egg.defaultProps = {
   timeLimit: 2000,
   onCatch: null,
   onAction: null,
-  type: 'View',
+  touchOpacity: false,
 };
