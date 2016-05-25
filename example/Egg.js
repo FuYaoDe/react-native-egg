@@ -31,6 +31,17 @@ export default class Egg extends Component {
     this._panResponder = PanResponder.create({
       onStartShouldSetPanResponder: (evt, gestureState) => true,
       onStartShouldSetPanResponderCapture: (evt, gestureState) => true,
+      onPanResponderGrant: (evt, gestureState) => {
+        if (this.props.type === 'Button') {
+          Animated.timing(
+            this.state.opacity,
+            {
+              toValue: 0.3,
+              duration: 200,
+            },
+          ).start();
+        }
+      },
       onPanResponderRelease: (evt, gestureState) => {
         this.gestureSetp(gestureState);
       },
@@ -48,26 +59,6 @@ export default class Egg extends Component {
 
   between = (input, min, max) => {
     return input >= min && input <= max;
-  }
-
-  opacity = () => {
-    Animated.timing(
-      this.state.opacity,
-      {
-        toValue: 0.3,
-        duration: 200,
-      },
-    ).start();
-
-    setTimeout(() => {
-      Animated.timing(
-        this.state.opacity,
-        {
-          toValue: 1,
-          duration: 200,
-        },
-      ).start();
-    }, 100);
   }
 
   gestureSetp = (gestureState) => {
@@ -106,8 +97,14 @@ export default class Egg extends Component {
         reset,
       });
     }
-    if (this.props.type == 'Button') {
-      this.opacity();
+    if (this.props.type === 'Button') {
+      Animated.timing(
+        this.state.opacity,
+        {
+          toValue: 1,
+          duration: 200,
+        },
+      ).start();
     }
 
     newSetp[(this.state.num + 1) % 30] = setp;
@@ -128,6 +125,10 @@ export default class Egg extends Component {
         num: -1,
       });
     }
+
+    if (this.props.onAction) {
+      this.props.onAction(setp)
+    }
   }
 
 
@@ -146,6 +147,7 @@ Egg.propTypes = {
   setps: PropTypes.string,
   timeLimit: PropTypes.number,
   onCatch: PropTypes.func.isRequired,
+  onAction: PropTypes.func,
   type: PropTypes.string,
 };
 
@@ -153,5 +155,6 @@ Egg.defaultProps = {
   setps: 'UUDDLRLRTT',
   timeLimit: 2000,
   onCatch: null,
+  onAction: null,
   type: 'View',
 };

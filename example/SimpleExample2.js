@@ -8,7 +8,8 @@ import {
   StyleSheet,
   Text,
   Alert,
-  Image,
+  View,
+  TouchableOpacity,
 } from 'react-native';
 import Egg from './Egg';
 const styles = StyleSheet.create({
@@ -17,35 +18,61 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
-    paddingBottom: 200,
   },
-  avatarImage: {
-    borderRadius: 60,
-    width: 120,
-    height: 120,
-    flexDirection: 'row',
-    marginBottom: 30,
+  button: {
+    margin: 20,
+    height: 50,
+    width: 150,
+    backgroundColor: '#406E9F',
+    borderRadius: 9,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  text: {
-    fontSize: 18,
-    fontWeight: '700',
+  buttonText: {
+    color: '#fff',
+    fontSize: 20,
+    fontWeight: 'bold',
   },
 });
 
-export default class SimpleExample1 extends Component {
+export default class SimpleExample2 extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      setp: '',
+      deugBtn: 0,
+    };
+  }
+
   render() {
     return (
-      <Egg style={styles.container}
-        setps={'TTT'}
-        onCatch={() => {
-          Alert.alert('Version', '1.0.0');
-        }}
-      >
-        <Image source={{ uri: 'https://avatars2.githubusercontent.com/u/6357215?v=3&s=460' }} style={styles.avatarImage} />
-        <Text style={styles.text}>FuYaoDe</Text>
-        <Text>dan82625@gmail.com</Text>
-        <Text style={{marginTop: 10}}>Try tap screen * 3</Text>
-      </Egg>
+      <View style={styles.container}>
+        <Text>Setp: {this.state.setp}</Text>
+        <Egg style={styles.button}
+          setps={'UUDD'}
+          type={'Button'}
+          timeLimit={10000}
+          onCatch={() => {
+            this.setState({
+              deugBtn: 1,
+            });
+          }}
+          onAction={(setp) => {
+            this.setState({
+              setp: this.state.setp ? `${this.state.setp}、${setp}` : setp,
+            });
+          }}
+        >
+          <Text style={styles.buttonText}>Click me!!</Text>
+        </Egg>
+        <Text>Try swipe Up、Up、Down、Down</Text>
+        <Text>on "Click me!!" Button</Text>
+        <View style={{ opacity: this.state.deugBtn }}>
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.buttonText}>Debug Mode</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     );
   }
 }

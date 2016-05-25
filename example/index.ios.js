@@ -14,8 +14,9 @@ import {
   TouchableOpacity,
   Alert,
 } from 'react-native';
-import Egg from './Egg';
 import SimpleExample1 from './SimpleExample1';
+import SimpleExample2 from './SimpleExample2';
+import SimpleExample3 from './SimpleExample3';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -45,7 +46,9 @@ class example extends Component {
       case 'simple1':
         return <SimpleExample1 />;
       case 'simple2':
-        return <SimpleExample1 />;
+        return <SimpleExample2 />;
+      case 'simple3':
+        return <SimpleExample3 />;
       default:
         return <View style={styles.container}>
             <TouchableOpacity
