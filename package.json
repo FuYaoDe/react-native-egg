@@ -26,5 +26,8 @@
   "bugs": {
     "url": "https://github.com/FuYaoDe/react-native-egg/issues"
   },
-  "homepage": "https://github.com/FuYaoDe/react-native-egg#readme"
+  "homepage": "https://github.com/FuYaoDe/react-native-egg#readme",
+  "dependencies": {
+    "prop-types": "^15.6.0"
+  }
 }
