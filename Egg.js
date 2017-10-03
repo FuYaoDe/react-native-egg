@@ -1,9 +1,10 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import {
   View,
   PanResponder,
   Animated,
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 export default class Egg extends Component {
   constructor(props) {

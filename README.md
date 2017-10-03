@@ -30,7 +30,7 @@ import Egg from 'react-native-egg';
 <Egg style={styles.container}
   setps={'TTT'}
   onCatch={() => {
-    Alert.alert('Version', '1.0.0');
+    Alert.alert('Version', '1.0.1');
   }}
 >
   <Text>FuYaoDe</Text>

@@ -1,6 +1,6 @@
 {
   "name": "react-native-egg",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "react-native-egg make your react native app infinitely more fun !!",
   "main": "Egg.js",
   "directories": {
@@ -26,5 +26,8 @@
   "bugs": {
     "url": "https://github.com/FuYaoDe/react-native-egg/issues"
   },
-  "homepage": "https://github.com/FuYaoDe/react-native-egg#readme"
+  "homepage": "https://github.com/FuYaoDe/react-native-egg#readme",
+  "dependencies": {
+    "prop-types": "^15.6.0"
+  }
 }
