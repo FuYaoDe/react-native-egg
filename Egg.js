@@ -15,12 +15,10 @@ export default class Egg extends Component {
       num: -1,
       opacity: new Animated.Value(1),
     };
-  }
 
-  componentWillMount() {
     this._panResponder = PanResponder.create({
       onStartShouldSetPanResponder: (evt, gestureState) => true,
-      onStartShouldSetPanResponderCapture: (evt, gestureState) => true,
+      onStartShouldSetPanResponderCapture: (evt, gestureState) => false,
       onPanResponderGrant: (evt, gestureState) => {
         if (this.props.touchOpacity) {
           Animated.timing(
@@ -36,7 +34,7 @@ export default class Egg extends Component {
         this.gestureSetp(gestureState);
       },
       onShouldBlockNativeResponder: (evt, gestureState) => {
-        return true;
+        return false;
       },
     });
   }
