@@ -34,7 +34,7 @@ export default class Egg extends Component {
         this.gestureSetp(gestureState);
       },
       onShouldBlockNativeResponder: (evt, gestureState) => {
-        return true;
+        return false;
       },
     });
   }
